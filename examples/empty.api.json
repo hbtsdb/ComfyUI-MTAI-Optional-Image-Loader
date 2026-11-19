@@ -1,0 +1,9 @@
+{
+  "1": {
+    "class_type": "MTAIOptionalLoadImage",
+    "inputs": {
+      "image": null,
+      "enabled": true
+    }
+  }
+}

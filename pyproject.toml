@@ -1,0 +1,11 @@
+[project]
+name = "comfyui-mtai-optional-image-loader"
+version = "0.1.0"
+description = "Standalone optional image loader for ComfyUI: empty inputs return None."
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+readme = "README.en.md"
+
+[project.urls]
+Repository = "https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader"
+Issues = "https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader/issues"
