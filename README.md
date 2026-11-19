@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-独立的 ComfyUI 可选图片加载节点。没有选择文件时输出真正的 `None`，有文件时复用ComfyUI 原生 LoadImage。无需 MTAI 画布、晨羽账号或另一个 MTAI 插件；不添加额外 Python 依赖。
+独立的 ComfyUI 可选图片加载节点。没有选择文件时输出真正的 `None`，有文件时复用 ComfyUI 原生 LoadImage。不添加额外 Python 依赖。
 
 ## 行为
 
@@ -15,11 +15,11 @@
 
 文件选择框的 `None` 是保留空值。节点默认启用；无需为了省略素材而禁用整个节点。
 
-**下游必须支持 `None`。** 这不是通用的执行跳过开关：连接到必须接收图片的保存、预览或处理节点时，下游仍可能报错。官方 H3 参考输入支持忽略 `None`，其他节点应分别确认。节点不生成占位素材，也不使用会阻断下游的 `ExecutionBlocker`。
+**下游必须支持 `None`。** 这不是通用的执行跳过开关：连接到必须接收图片的保存、预览或处理节点时，下游仍可能报错。请确认所连接的下游节点允许缺省素材。节点不生成占位素材，也不使用会阻断下游的 `ExecutionBlocker`。
 
 ## 安装
 
-需要 Python 3.10+，以及包含ComfyUI 原生 LoadImage的 ComfyUI。支持标准 `custom_nodes` 安装方式，Windows Portable 同样适用。
+本机需要 Python 3.10+，以及提供原生 LoadImage 的 ComfyUI。安装到本机 ComfyUI 的 `custom_nodes` 目录，Windows Portable 同样适用。
 
 在 **ComfyUI 使用的环境** 中执行：
 
@@ -29,8 +29,6 @@ git clone https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader.git
 ```
 
 也可以下载项目 ZIP，解压为 `ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader/`。确认 `__init__.py` 直接位于该目录，不要多嵌套一层。重启 ComfyUI 并刷新页面，在 `MTAI/optional inputs` 分类搜索 **MTAI Optional Load Image**。
-
-晨羽、其他云平台、本机和容器的安装方式相同：将插件安装到实际运行任务的 ComfyUI 环境。云平台须允许安装自定义节点；持久保留请按平台方式保存环境或镜像，不保证销毁实例后插件仍存在。
 
 ## 更新到 0.1.1
 
@@ -65,7 +63,7 @@ git pull --ff-only
 
 使用文件时将 `null` 换成已上传的 `"uploaded-reference.png"`。只有确实不提供素材时才留空；文件名拼错会报错。
 
-不注册晨羽同名节点，也不自动修改已有工作流。需要将原加载节点替换为本节点、重新连接输出，并重新导出 API JSON。
+在已有工作流中使用时，将原加载节点替换为本节点、重新连接输出，并重新导出 API JSON。
 
 ## 验证
 
@@ -73,8 +71,8 @@ git pull --ff-only
 python -m unittest discover -s tests -v
 ```
 
-测试使用标准库和 ComfyUI 边界测试替身，覆盖空值、关闭开关、有效文件调用、缺失/损坏文件和同名文件更新后的缓存失效。它们不证明真实解码器、前端上传控件或完整 H3 推理已通过；安装后的实机检查见 [TESTING.md](TESTING.md)。
+测试使用标准库和 ComfyUI 边界测试替身，覆盖空值、关闭开关、有效文件调用、缺失/损坏文件和同名文件更新后的缓存失效。它们不证明真实解码器、前端上传控件或完整工作流执行已通过；安装后的实机检查见 [TESTING.md](TESTING.md)。
 
-## 来源与许可证
+## 许可证
 
-MIT，见 [LICENSE](LICENSE)。本项目使用 ComfyUI 原生接口，不包含晨羽节点源码，也没有复制 ComfyUI 的解码实现。ComfyUI 和其运行依赖仍遵循各自许可证。
+MIT，见 [LICENSE](LICENSE)。

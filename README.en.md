@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-A standalone optional image loader for ComfyUI. Empty inputs return real Python `None`; selected files use ComfyUI's native decoder. No MTAI Canvas, Chenyu account, companion plugin, or extra Python dependencies are required.
+A standalone optional image loader for ComfyUI. Empty inputs return real Python `None`; selected files use ComfyUI's native decoder. No extra Python dependencies are required.
 
 ## Behavior
 
@@ -15,18 +15,18 @@ A standalone optional image loader for ComfyUI. Empty inputs return real Python 
 
 `None` is a reserved empty choice. The node is enabled by default. Outputs: **IMAGE, MASK, has_image**.
 
-**The receiving node must handle `None`.** This is not a universal downstream bypass. Save/preview/processing nodes requiring media can still fail on empty input. Official H3 reference conditioning skips `None`; check other consumers individually. No placeholder media, silence, or `ExecutionBlocker` is generated.
+**The receiving node must handle `None`.** This is not a universal downstream bypass. Save/preview/processing nodes requiring media can still fail on empty input. Check that each receiving node supports omitted media. No placeholder media, silence, or `ExecutionBlocker` is generated.
 
 ## Install
 
-Requires Python 3.10+ and ComfyUI with its built-in LoadImage loader.
+Requires a local ComfyUI installation, Python 3.10+, and its built-in LoadImage loader.
 
 ```sh
 cd /path/to/ComfyUI/custom_nodes
 git clone https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader.git
 ```
 
-Alternatively extract the project ZIP to `ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader/`, with `__init__.py` directly inside that directory. Restart ComfyUI and refresh the browser. Search for **MTAI Optional Load Image**, category `MTAI/optional inputs`. Standard local, portable, container and cloud installations are supported when they allow custom nodes. Follow your cloud provider's environment/image persistence process to retain installations after an instance is destroyed.
+Alternatively extract the project ZIP to `ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader/`, with `__init__.py` directly inside that directory. Restart ComfyUI and refresh the browser. Search for **MTAI Optional Load Image**, category `MTAI/optional inputs`. Install into your local ComfyUI `custom_nodes` directory. Windows Portable is also supported.
 
 ## Update to 0.1.1
 
@@ -55,7 +55,7 @@ This and the files in `examples/` are **node fragments**, not complete executabl
 }
 ```
 
-Replace `null` with `"uploaded-reference.png"` to load a file. Existing workflows are not migrated. Replace the old loader, reconnect outputs, and export a fresh API graph. No Chenyu node names are registered.
+Replace `null` with `"uploaded-reference.png"` to load a file. Existing workflows are not migrated. Replace the old loader, reconnect outputs, and export a fresh API graph.
 
 ## Tests
 
@@ -63,8 +63,8 @@ Replace `null` with `"uploaded-reference.png"` to load a file. Existing workflow
 python -m unittest discover -s tests -v
 ```
 
-These dependency-free contract tests replace the ComfyUI boundary with test doubles. They cover optional values, disabling, native-loader delegation, missing/corrupt files, and file-content cache invalidation. They do not certify real decoding, upload widgets, or full H3 inference. See [TESTING.md](TESTING.md) for installation acceptance checks.
+These dependency-free contract tests replace the ComfyUI boundary with test doubles. They cover optional values, disabling, native-loader delegation, missing/corrupt files, and file-content cache invalidation. They do not certify real decoding, upload widgets, or full workflow execution. See [TESTING.md](TESTING.md) for installation acceptance checks.
 
 ## License
 
-[MIT](LICENSE). Uses native ComfyUI APIs without copying its decoder implementation or Chenyu node code. ComfyUI and runtime dependencies retain their own licenses.
+[MIT](LICENSE).
