@@ -12,3 +12,7 @@ The Python contract tests pass locally. The following real ComfyUI checks are pe
 6. In a copy of the H3 workflow, replace only the corresponding loader type, keep one reference populated and the remaining slots empty, and confirm those empty references do not prevent the intended output branch from running. / 在 H3 副本中替换同类加载节点，保留一个素材，其余为空，确认实际生成分支运行。
 
 Record the tested ComfyUI/frontend/Python versions and actual result before marking these checks passed. / 验收时记录实际版本及结果。
+
+## 0.1.1 upload control regression / 上传控件回归
+
+Update, restart ComfyUI, hard-refresh the browser and add a fresh node. Confirm the upload button opens the correct media picker, uploads a real file, updates the filename, and produces valid output. Then select `None` and confirm the nullable downstream consumer still executes. Verify workflow save/reload keeps the filename and enabled switch. These browser checks remain pending until performed on the installed plugin. / 更新、重启、强刷后新建节点，检查上传、文件名回填、真实输出、切回 None 后继续执行，以及保存重开后的参数；实机检查仍待完成。

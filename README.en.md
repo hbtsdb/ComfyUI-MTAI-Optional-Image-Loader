@@ -28,6 +28,15 @@ git clone https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader.git
 
 Alternatively extract the project ZIP to `ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader/`, with `__init__.py` directly inside that directory. Restart ComfyUI and refresh the browser. Search for **MTAI Optional Load Image**, category `MTAI/optional inputs`. Standard local, portable, container and cloud installations are supported when they allow custom nodes. Follow your cloud provider's environment/image persistence process to retain installations after an instance is destroyed.
 
+## Update to 0.1.1
+
+```sh
+cd /path/to/ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader
+git pull --ff-only
+```
+
+Restart ComfyUI and hard-refresh the browser. Add a fresh node to verify the upload button. Existing workflows can be kept. Version 0.1.1 explicitly declares native upload controls for the optional filename field while preserving empty/omitted API inputs.
+
 ## API
 
 Inputs: `image` (filename), `enabled` (boolean, default `true`). Both can be omitted. Use ComfyUI's normal filename/subfolder/annotation conventions. Upload through its standard `/upload/image` endpoint, then pass the returned filename including its subfolder. A misspelled nonempty filename is an error.

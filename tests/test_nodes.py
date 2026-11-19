@@ -87,6 +87,13 @@ class OptionalInputTests(unittest.TestCase):
         self.native.return_value.load_image.assert_not_called()
         self.decoder.assert_not_called()
 
+    def test_optional_image_has_explicit_native_upload_widget(self):
+        fields = self.cls.INPUT_TYPES()["optional"]
+        self.assertEqual(fields["upload"][0], "IMAGEUPLOAD")
+        self.assertEqual(fields["upload"][1]["imageInputName"], "image")
+        self.assertTrue(fields["upload"][1]["image_upload"])
+        self.assertLess(list(fields).index("image"), list(fields).index("upload"))
+
     def test_valid_input_uses_native_decoder(self):
         self.assertIs(self.cls.VALIDATE_INPUTS(**{"image": self.file.name}), True)
         result = self.load(**{"image": self.file.name})

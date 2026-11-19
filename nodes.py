@@ -17,6 +17,9 @@ class MTAIOptionalLoadImage:
         return {"optional": {
             "image": (["None", *files], {**options, "default": "None"}),
             "enabled": ("BOOLEAN", {"default": True}),
+            # ComfyUI only auto-injects upload controls for required fields.
+            # Declare its native UI-only widget explicitly for this optional field.
+            "upload": ("IMAGEUPLOAD", {**options, "imageInputName": "image"}),
         }}
 
     RETURN_TYPES = ("IMAGE", "MASK", "BOOLEAN")

@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-mtai-optional-image-loader"
-version = "0.1.0"
+version = "0.1.1"
 description = "Standalone optional image loader for ComfyUI: empty inputs return None."
 requires-python = ">=3.10"
 license = { file = "LICENSE" }

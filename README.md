@@ -32,6 +32,15 @@ git clone https://github.com/hbtsdb/ComfyUI-MTAI-Optional-Image-Loader.git
 
 晨羽、其他云平台、本机和容器的安装方式相同：将插件安装到实际运行任务的 ComfyUI 环境。云平台须允许安装自定义节点；持久保留请按平台方式保存环境或镜像，不保证销毁实例后插件仍存在。
 
+## 更新到 0.1.1
+
+```sh
+cd /path/to/ComfyUI/custom_nodes/ComfyUI-MTAI-Optional-Image-Loader
+git pull --ff-only
+```
+
+重启 ComfyUI 后强制刷新网页。先新建一个节点确认上传按钮出现；旧工作流可保留。0.1.1 显式声明原生上传控件，修复可选字段未自动生成上传按钮的问题，API 空值行为不变。
+
 ## 使用和 API
 
 - 输入：`image` 文件名；`enabled` 布尔值，默认 `true`。
